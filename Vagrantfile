@@ -123,4 +123,9 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.define :dashboard1 do |dashboard1|
+    dashboard1.vm.hostname = "dashboard1.vag.ardemans.int"
+    dashboard1.vm.network :private_network, ip: "192.168.5.16"
+  end
+
 end
