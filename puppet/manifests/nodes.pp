@@ -4,34 +4,28 @@ node 'puppet1.vag.ardemans.int' {
     stage          => 'pre',
   }
   
+  class { 'puppet::agent':
+    report       => 'true',
+    certname     => 'puppet1.vag.ardemans.int',
+    masterserver => 'puppet1.vag.ardemans.int',
+  }
+  
   class { 'puppet::master':
+    manifestdir    => '/vagrant/puppet/manifests',
+    manifest       => '/vagrant/puppet/manifests/site.pp',
+	modulepath     => '/vagrant/puppet/modules',
     reports        => 'puppetdb',
-	dns_alt_names  => 'perico.palotes.com,tomaya.ya.yaa',
+    dns_alt_names  => 'puppet.vag.ardemans.int',
   }
   
   class { 'puppet::configmain':
-    certname       => 'prueba-cert-name-2',
-    masterserver   => 'prueba',
+    certname       => 'puppet1.vag.ardemans.int',
   }
   
   puppet::environment { 'dev':
     manifestdir    => '/etc/puppet/environments/dev/manifests',
-	manifest       => 'site.pp',
-	modulepath     => '/etc/puppet/environments/dev',
+    manifest       => 'site.pp',
+    modulepath     => '/etc/puppet/environments/dev/modules',
   }
-
-  puppet::environment { 'pre':
-    manifestdir    => '/etc/puppet/environments/pre/manifests',
-	manifest       => 'site.pp',
-	modulepath     => '/etc/puppet/environments/pre',
-  }
-
-  puppet::environment { 'int':
-    manifestdir    => '/etc/puppet/environments/int/manifests',
-	manifest       => 'site.pp',
-	modulepath     => '/etc/puppet/environments/int',
-  }
- 
-  
 
 }
