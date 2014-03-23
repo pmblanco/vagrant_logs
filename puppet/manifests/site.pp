@@ -1,8 +1,6 @@
-
 stage {'pre':
-  before => Stage['main'],
 }
 
-
+Stage['pre'] -> Stage ['main']
 
 import 'nodes.pp'
