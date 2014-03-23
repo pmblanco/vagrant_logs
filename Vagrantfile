@@ -109,6 +109,7 @@ Vagrant.configure("2") do |config|
   #
   #   chef.validation_client_name = "ORGNAME-validator"
 
+  # Servidor de Puppet Master
   config.vm.define :puppet1 do |puppet1|
     puppet1.vm.hostname = "puppet1.vag.ardemans.int"
     puppet1.vm.network :private_network, ip: "192.168.5.15"
@@ -123,9 +124,15 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  # Maquina con servicios dashboard
   config.vm.define :dashboard1 do |dashboard1|
     dashboard1.vm.hostname = "dashboard1.vag.ardemans.int"
     dashboard1.vm.network :private_network, ip: "192.168.5.16"
+	dashboard1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
+	dashboard1.vm.provision "puppet_server" do |puppet|
+	  puppet.puppet_server = "puppet1.vag.ardemans.int"
+	  puppet.options = "--verbose --debug"
+	end
   end
 
 end
