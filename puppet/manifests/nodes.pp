@@ -4,23 +4,20 @@ node 'puppet1.vag.ardemans.int' {
     stage          => 'pre',
   }
   
-  class { 'puppet::agent':
-    report       => 'false',
-    certname     => 'puppet1.vag.ardemans.int',
-    masterserver => 'puppet1.vag.ardemans.int',
-  }
-  
   class { 'puppet::master':
-    manifestdir    => '/vagrant/puppet/manifests',
-    manifest       => '/vagrant/puppet/manifests/site.pp',
-	modulepath     => '/vagrant/puppet/modules',
-    reports        => 'puppetdb',
-    dns_alt_names  => 'puppet.vag.ardemans.int',
-  }
-  
-  class { 'puppet::configmain':
-    certname       => 'puppet1.vag.ardemans.int',
-	rundir         => '/var/run/puppet'
+    manifestdir     => '/vagrant/puppet/manifests',
+    manifest        => '/vagrant/puppet/manifests/site.pp',
+	modulepath      => '/vagrant/puppet/modules',
+    dns_alt_names   => 'puppet.vag.ardemans.int',
+	puppetdb_server => 'puppet1.vag.ardemans.int',
+	reports         => 'store,puppetdb',
+	autosign        => ['*','*.prueba.com'],
+    report          => 'true',
+    certname        => 'puppet1.vag.ardemans.int',
+    masterserver    => 'puppet1.vag.ardemans.int',
+	agent_status    => 'stopped',
+	rundir          => '/var/run/puppet',
+	ssldir          => '/var/lib/puppet/ssl',
   }
   
   puppet::environment { 'dev':
@@ -28,8 +25,11 @@ node 'puppet1.vag.ardemans.int' {
     manifest       => 'site.pp',
     modulepath     => '/etc/puppet/environments/dev/modules',
   }
+  
+  class { 'puppet::db':
+  }
 
-}  
+}
 
 node 'dashboard1.vag.ardemans.int' {
 
@@ -37,4 +37,12 @@ node 'dashboard1.vag.ardemans.int' {
     stage          => 'pre',
   }
 
+  class { 'puppet::agent':
+    report         => 'true',
+    masterserver   => 'puppet1.vag.ardemans.int',
+	service_status => 'stopped',
+	rundir         => '/var/run/puppet',
+	ssldir         => '/var/lib/puppet/ssl',
+  }
+  
 }
