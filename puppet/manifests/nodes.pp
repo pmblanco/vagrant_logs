@@ -11,6 +11,8 @@ node 'puppet1.vag.ardemans.int' {
     dns_alt_names   => 'puppet.vag.ardemans.int',
 	puppetdb_server => 'puppet1.vag.ardemans.int',
 	reports         => 'store,puppetdb',
+	storeconfigs    => 'true',
+	storeconfig_backend => 'puppetdb',
 	autosign        => ['*','*.prueba.com'],
     report          => 'true',
     certname        => 'puppet1.vag.ardemans.int',
