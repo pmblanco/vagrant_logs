@@ -12,7 +12,7 @@ node 'puppet1.vag.ardemans.int' {
 	puppetdb_server => 'puppet1.vag.ardemans.int',
 	reports         => 'store,puppetdb',
 	storeconfigs    => 'true',
-	storeconfig_backend => 'puppetdb',
+	storeconfigs_backend => 'puppetdb',
 	autosign        => ['*','*.prueba.com'],
     report          => 'true',
     certname        => 'puppet1.vag.ardemans.int',
@@ -44,7 +44,7 @@ node 'dashboard1.vag.ardemans.int' {
     masterserver   => 'puppet1.vag.ardemans.int',
 	service_status => 'stopped',
 	rundir         => '/var/run/puppet',
-	ssldir         => '/var/lib/puppet/ssl',
+	ssldir         => '/etc/puppet/ssl',
   }
   
 }
