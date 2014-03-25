@@ -132,7 +132,7 @@ Vagrant.configure("2") do |config|
 	dashboard1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
 	dashboard1.vm.provision "puppet_server" do |puppet|
 	  puppet.puppet_server = "puppet1.vag.ardemans.int"
-	  puppet.options = "--verbose --debug"
+	  puppet.options = "--verbose --debug --waitforcert=5"
 	end
   end
 
