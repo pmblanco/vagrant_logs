@@ -47,4 +47,34 @@ node 'dashboard1.vag.ardemans.int' {
 	ssldir         => '/etc/puppet/ssl',
   }
   
+  package { 'python-pip':
+    ensure         => installed,
+  }
+  
+  class { 'apache':
+    default_vhost   => false,
+  }
+  
+  apache::vhost { 'puppetboard':
+    port                        => '80',
+    docroot                     => '/var/www/puppetboard',
+    wsgi_daemon_process         => 'puppetboard',
+    wsgi_daemon_process_options =>
+      { processes    => '2', 
+        threads      => '15', 
+       },
+    wsgi_process_group          => 'puppetboard',
+    wsgi_script_aliases         => { '/' => '/var/www/puppetboard/wsgi.py' },
+  }  
+  
+  class { 'puppetboard':
+    puppetdb_host  => 'puppet1.vag.ardemans.int',
+	puppetdb_port  => '8080',
+	require        => [
+	  Package['python-pip'],
+	  Apache::Vhost['puppetboard']
+	],
+  }
+  
+  
 }
