@@ -10,12 +10,15 @@ Esta versión inicial consta de dos máquinas
 - puppet1 (192.168.5.15)
 - dashboard1 (192.168.5.16)
 
-Los servicios de puppetmaster y de puppetdb están contenidos en la primera máquina. En la segunda, aunque se llama dashboard, de momento solo tiene instalado el agente de puppet y configurado para poder ejecutarse contra el master en cualquier momento. En un futuro es muy probable que tenga un dashboard para poder ver de forma fácil los resúmenes de los reports que se vayan generando. 
-   
+Los servicios de puppetmaster y de puppetdb están contenidos en la primera máquina. En la segunda está instalado el servicio puppetboard, que se puede consultar con la URL: http://192.168.5.16
+
 ## Autores
 
 Pedro Miguel Blanco 
    
 ## Changelog
+
+### v.0.2. 30/03/2014
+Se puede consultar puppetboard en el servidor dashboard1 (http://192.168.5.16)
 
 ### v.0.1. 28/03/2014
