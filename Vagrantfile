@@ -7,11 +7,14 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "Ubuntu_server_12042_x64"
+  #config.vm.box = "Ubuntu_server_12042_x64"
+  config.vm.box = "Centos64_x64"
+
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
+  #config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
+  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -113,9 +116,9 @@ Vagrant.configure("2") do |config|
   config.vm.define :puppet1 do |puppet1|
     puppet1.vm.hostname = "puppet1.vag.ardemans.int"
     puppet1.vm.network :private_network, ip: "192.168.5.15"
-	puppet1.vm.provision :shell do |shell|
-	  shell.inline = "/usr/bin/apt-get update"
-	end
+	#puppet1.vm.provision :shell do |shell|
+	#  shell.inline = "/usr/bin/apt-get update"
+	#end
 	puppet1.vm.provision :puppet do |puppet|
 	  puppet.manifests_path = "puppet/manifests"
 	  puppet.manifest_file = "site.pp"
