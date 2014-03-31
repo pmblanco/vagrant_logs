@@ -6,6 +6,11 @@ class roles::common {
       class {'roles::common::ubuntu':
       }
     }
+	
+	'CentOS','RedHat': {
+	  class {'roles::common::redhat':
+	  }
+	}
 
   }
 
