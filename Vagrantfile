@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   #config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/ubuntu-server-12042-x64-vbox4210.box"
-  config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
+  #config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-64-x64-vbox4210.box"
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -120,13 +120,13 @@ Vagrant.configure("2") do |config|
 	#puppet1.vm.provision :shell do |shell|
 	#  shell.inline = "/usr/bin/apt-get update"
 	#end
-	#puppet1.vm.provision :puppet do |puppet|
-	#  puppet.manifests_path = "puppet/manifests"
-	#  puppet.manifest_file = "site.pp"
-	#  puppet.module_path = "puppet/modules"
-	#  puppet.hiera_config_path = "hiera.yaml"
-	# puppet.options = "--verbose --debug"
-    #end
+	puppet1.vm.provision :puppet do |puppet|
+	  puppet.manifests_path = "puppet/manifests"
+	  puppet.manifest_file = "site.pp"
+	  puppet.module_path = "puppet/modules"
+	  puppet.hiera_config_path = "hiera.yaml"
+	 puppet.options = "--verbose --debug"
+    end
   end
 
   # Maquina con servicios dashboard
