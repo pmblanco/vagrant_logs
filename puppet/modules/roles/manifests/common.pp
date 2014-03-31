@@ -14,7 +14,6 @@ class roles::common {
 
   }
 
-
   class { 'puppet::repo':
   }
   
