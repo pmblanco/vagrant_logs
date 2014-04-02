@@ -8,12 +8,26 @@ class roles::puppet_services {
     default_vhost   => false,
   }
   
+  case $::operatingsystem {
+    'Ubuntu': {
+	  $puppetboard_path = '/usr/local/lib/python2.7/dist-packages/puppetboard/static'
+	  $puppetboard_user = 'www-data'
+	  $puppetboard_group = 'www-data'
+	}
+	
+	'CentOS','RedHat': {
+	  $puppetboard_path = '/usr/lib/python2.6/site-packages/puppetboard'
+	  $puppetboard_user = 'apache'
+	  $puppetboard_group = 'apache'
+	}
+  }
+  
   apache::vhost { 'puppetboard':
     port                        => '80',
     docroot                     => '/var/www/puppetboard',
 	aliases                     => [
 	  { alias   => '/static',
-	    path    => '/usr/lib/python2.6/site-packages/puppetboard/static',
+	    path    => "${puppetboard_path}/static",
 	  }
 	],
 	directories                 => [
@@ -22,7 +36,7 @@ class roles::puppet_services {
 		options          => 'Indexes FollowSymLinks MultiViews'
 	  },
 	  {
-	    path             => '/usr/lib/python2.6/site-packages/puppetboard',
+	    path             => "${puppetboard_path}",
 		options          => 'Indexes',
 		custom_fragment  => "Require all granted\n    WSGIProcessGroup puppetboard\n    WSGIApplicationGroup %{GLOBAL}",
 	  },
@@ -31,8 +45,8 @@ class roles::puppet_services {
     wsgi_daemon_process_options =>
       { processes    => '2', 
         threads      => '15',
-		user         => 'apache',
-		group        => 'apache',
+		user         => "${puppetboard_user}",
+		group        => "${puppetboard_group}",
        },
     wsgi_script_aliases         => { '/' => '/var/www/puppetboard/wsgi.py' },
   }  

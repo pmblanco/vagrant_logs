@@ -23,5 +23,7 @@ node 'dashboard1.vag.ardemans.int' {
 	ssldir         => '/var/lib/puppet/ssl',
   }
   
+  class { 'roles::puppet_services':
+  }
   
 }

@@ -25,6 +25,7 @@ class roles::puppet_master {
   }
   
   class { 'puppet::db':
+    require   => Class['puppet::master'],
   }
 
 }
