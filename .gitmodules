@@ -16,3 +16,9 @@
 [submodule "puppet/modules/puppetboard"]
 	path = puppet/modules/puppetboard
 url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
+[submodule "puppet/modules/epel"]
+	path = puppet/modules/epel
+	url = https://github.com/stahnma/puppet-module-epel.git
+[submodule "puppet/modules/firewall"]
+	path = puppet/modules/firewall
+	url = https://github.com/puppetlabs/puppetlabs-firewall.git
