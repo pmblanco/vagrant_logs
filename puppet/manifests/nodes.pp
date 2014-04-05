@@ -49,7 +49,7 @@ node 'es1.vag.ardemans.int' {
     package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm",
     config                  => {
      'node'                 => {
-       'name'               => 'es1'
+       'name'               => $::hostname
      },
      'index'                => {
        'number_of_replicas' => '0',
@@ -88,7 +88,7 @@ node 'es2.vag.ardemans.int' {
     package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm",
     config                  => {
      'node'                 => {
-       'name'               => 'es2'
+       'name'               => $::hostname
      },
      'index'                => {
        'number_of_replicas' => '0',
@@ -120,5 +120,18 @@ node 'logs1.vag.ardemans.int' {
 	rundir         => '/var/run/puppet',
 	ssldir         => '/var/lib/puppet/ssl',
   }
+  
+  class { 'logstash':
+    java_install => true,
+    package_url  => 'http://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.3.3-1_centos.noarch.rpm',
+  }
 
+#  class { 'logstash':
+#    ensure   => 'absent',
+#  }
+  
+#  logstash::configfile { 'prueba':
+#    source      => 'puppet:///logstash-config.conf',
+#  }
+  
 }
