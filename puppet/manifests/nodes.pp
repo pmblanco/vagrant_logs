@@ -121,17 +121,7 @@ node 'logs1.vag.ardemans.int' {
 	ssldir         => '/var/lib/puppet/ssl',
   }
   
-  class { 'logstash':
-    java_install => true,
-    package_url  => 'http://download.elasticsearch.org/logstash/logstash/packages/centos/logstash-1.3.3-1_centos.noarch.rpm',
+  class { 'roles::logstash_test':
   }
-
-#  class { 'logstash':
-#    ensure   => 'absent',
-#  }
-  
-#  logstash::configfile { 'prueba':
-#    source      => 'puppet:///logstash-config.conf',
-#  }
   
 }
