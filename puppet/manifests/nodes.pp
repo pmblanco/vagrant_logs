@@ -46,7 +46,7 @@ node 'es1.vag.ardemans.int' {
 # Rol de Elasticsearch
   class { 'elasticsearch':
     java_install            => true,
-    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm",
+    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.noarch.rpm",
     config                  => {
      'node'                 => {
        'name'               => $::hostname
@@ -85,7 +85,7 @@ node 'es2.vag.ardemans.int' {
 # Rol de Elasticsearch
   class { 'elasticsearch':
     java_install            => true,
-    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm",
+    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.noarch.rpm",
     config                  => {
      'node'                 => {
        'name'               => $::hostname
@@ -122,6 +122,9 @@ node 'logs1.vag.ardemans.int' {
   }
   
   class { 'roles::logstash_test':
+  }
+  
+  class { 'roles::redis_test':
   }
   
 }
