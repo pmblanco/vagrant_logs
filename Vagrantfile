@@ -133,5 +133,38 @@ Vagrant.configure("2") do |config|
 	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
 	end
   end
+  
+  # Elasticsearch 1
+  config.vm.define :es1 do |es1|
+    es1.vm.hostname = "es1.vag.ardemans.int"
+    es1.vm.network :private_network, ip: "192.168.5.17"
+	es1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
+	es1.vm.provision "puppet_server" do |puppet|
+	  puppet.puppet_server = "puppet1.vag.ardemans.int"
+	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
+	end
+  end
+
+  # Elasticsearch 2
+  config.vm.define :es2 do |es2|
+    es2.vm.hostname = "es2.vag.ardemans.int"
+    es2.vm.network :private_network, ip: "192.168.5.18"
+	es2.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
+	es2.vm.provision "puppet_server" do |puppet|
+	  puppet.puppet_server = "puppet1.vag.ardemans.int"
+	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
+	end
+  end
+
+  # Logs 1 
+  config.vm.define :logs1 do |logs1|
+    logs1.vm.hostname = "logs1.vag.ardemans.int"
+    logs1.vm.network :private_network, ip: "192.168.5.19"
+	logs1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
+	logs1.vm.provision "puppet_server" do |puppet|
+	  puppet.puppet_server = "puppet1.vag.ardemans.int"
+	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
+	end
+  end
 
 end

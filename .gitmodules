@@ -22,3 +22,15 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 [submodule "puppet/modules/firewall"]
 	path = puppet/modules/firewall
 	url = https://github.com/puppetlabs/puppetlabs-firewall.git
+[submodule "puppet/modules/elasticsearch"]
+	path = puppet/modules/elasticsearch
+	url = https://github.com/elasticsearch/puppet-elasticsearch.git
+[submodule "puppet/modules/logstash"]
+	path = puppet/modules/logstash
+	url = https://github.com/elasticsearch/puppet-logstash.git
+[submodule "puppet/modules/file_concat"]
+	path = puppet/modules/file_concat
+	url = https://github.com/electrical/puppet-lib-file_concat.git
+[submodule "puppet/modules/redis"]
+	path = puppet/modules/redis
+	url = https://github.com/arioch/puppet-redis.git
