@@ -1,0 +1,29 @@
+input {
+  
+  udp {
+    type    => "apachelog"
+    port    => 4444
+  }
+  
+   
+}
+
+
+filter {
+    
+	split {}
+
+	  grok {
+	    match      => [ "message", "%{COMBINEDAPACHELOG}" ]
+      }
+
+}
+
+output {
+
+	  elasticsearch {
+		cluster       => 'ClusterPruebas'
+		bind_host     => '192.168.5.19'
+	  }
+
+}

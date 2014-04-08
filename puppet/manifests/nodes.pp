@@ -26,6 +26,11 @@ node 'dashboard1.vag.ardemans.int' {
   class { 'roles::puppet_services':
   }
   
+  apache::vhost { 'kibana':
+    port                        => '81',
+    docroot                     => '/var/www/kibana',
+  }
+  
 }
   
 node 'es1.vag.ardemans.int' {
@@ -46,7 +51,7 @@ node 'es1.vag.ardemans.int' {
 # Rol de Elasticsearch
   class { 'elasticsearch':
     java_install            => true,
-    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.noarch.rpm",
+    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.9.noarch.rpm",
     config                  => {
      'node'                 => {
        'name'               => $::hostname
@@ -60,7 +65,6 @@ node 'es1.vag.ardemans.int' {
      },
 	 'cluster'              => {
 	   'name'               => 'ClusterPruebas',
-	   'routing.allocation.awareness.attributes' => 'rack',
 	 }
 	 
     }
@@ -85,7 +89,7 @@ node 'es2.vag.ardemans.int' {
 # Rol de Elasticsearch
   class { 'elasticsearch':
     java_install            => true,
-    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.0.1.noarch.rpm",
+    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.9.noarch.rpm",
     config                  => {
      'node'                 => {
        'name'               => $::hostname
@@ -99,7 +103,6 @@ node 'es2.vag.ardemans.int' {
      },
 	 'cluster'              => {
 	   'name'               => 'ClusterPruebas',
-	   'routing.allocation.awareness.attributes' => 'rack',
 	 }
     }
   }
