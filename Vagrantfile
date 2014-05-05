@@ -134,7 +134,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :es2 do |es2|
     es2.vm.hostname = "es2.vag.ardemans.int"
     es2.vm.network :private_network, ip: "192.168.5.42"
-	es2.vm.provision "shell",  "/usr/bin/yum -y install puppet"
+	es2.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
 	es2.vm.provision :puppet do |puppet|
 	  puppet.manifests_path = "puppet/manifests"
 	  puppet.manifest_file = "site.pp"
@@ -148,7 +148,7 @@ Vagrant.configure("2") do |config|
   config.vm.define :logs1 do |logs1|
     logs1.vm.hostname = "logs1.vag.ardemans.int"
     logs1.vm.network :private_network, ip: "192.168.5.46"
-	logs1.vm.provision "shell",  "/usr/bin/yum -y install puppet"
+	logs1.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
 	logs1.vm.provision :puppet do |puppet|
 	  puppet.manifests_path = "puppet/manifests"
 	  puppet.manifest_file = "site.pp"
