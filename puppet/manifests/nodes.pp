@@ -7,7 +7,7 @@ node 'es1.vag.ardemans.int' {
   }
   
   # Rol de Elasticsearch
-  class { 'roles::elasticserch_test':
+  class { 'roles::elasticsearch_test':
   }
  
 }
@@ -19,7 +19,7 @@ node 'es2.vag.ardemans.int' {
   }
 
   # Rol de Elasticsearch
-  class { 'roles::elasticserch_test':
+  class { 'roles::elasticsearch_test':
   }
   
 }
