@@ -49,6 +49,11 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
 
+  config.vm.provider :virtualbox do |vb|
+	vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+  end
+
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
@@ -110,61 +115,47 @@ Vagrant.configure("2") do |config|
   #
   #   chef.validation_client_name = "ORGNAME-validator"
 
-  # Servidor de Puppet Master
-  config.vm.define :puppet1 do |puppet1|
-    puppet1.vm.hostname = "puppet1.vag.ardemans.int"
-    puppet1.vm.network :private_network, ip: "192.168.5.15"
-	puppet1.vm.provision :puppet do |puppet|
-	  puppet.manifests_path = "puppet/manifests"
-	  puppet.manifest_file = "site.pp"
-	  puppet.module_path = "puppet/modules"
-	  puppet.hiera_config_path = "hiera.yaml"
-	 puppet.options = "--verbose --debug"
-    end
-  end
-
-  # Maquina con servicios dashboard
-  config.vm.define :dashboard1 do |dashboard1|
-    dashboard1.vm.hostname = "dashboard1.vag.ardemans.int"
-    dashboard1.vm.network :private_network, ip: "192.168.5.16"
-	dashboard1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
-	dashboard1.vm.provision "puppet_server" do |puppet|
-	  puppet.puppet_server = "puppet1.vag.ardemans.int"
-	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
-	end
-  end
   
   # Elasticsearch 1
   config.vm.define :es1 do |es1|
     es1.vm.hostname = "es1.vag.ardemans.int"
-    es1.vm.network :private_network, ip: "192.168.5.17"
-	es1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
-	es1.vm.provision "puppet_server" do |puppet|
-	  puppet.puppet_server = "puppet1.vag.ardemans.int"
-	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
+    es1.vm.network :private_network, ip: "192.168.5.41"
+	es1.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
+	es1.vm.provision :puppet do |puppet|
+	  puppet.manifests_path = "puppet/manifests"
+	  puppet.manifest_file = "site.pp"
+	  puppet.module_path = "puppet/modules"
+	  puppet.hiera_config_path = "hiera.yaml"
+	  puppet.options = "--verbose --debug"
 	end
   end
 
   # Elasticsearch 2
   config.vm.define :es2 do |es2|
     es2.vm.hostname = "es2.vag.ardemans.int"
-    es2.vm.network :private_network, ip: "192.168.5.18"
-	es2.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
-	es2.vm.provision "puppet_server" do |puppet|
-	  puppet.puppet_server = "puppet1.vag.ardemans.int"
-	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
-	end
+    es2.vm.network :private_network, ip: "192.168.5.42"
+	es2.vm.provision "shell",  "/usr/bin/yum -y install puppet"
+	es2.vm.provision :puppet do |puppet|
+	  puppet.manifests_path = "puppet/manifests"
+	  puppet.manifest_file = "site.pp"
+	  puppet.module_path = "puppet/modules"
+	  puppet.hiera_config_path = "hiera.yaml"
+	  puppet.options = "--verbose --debug"
+    end
   end
 
   # Logs 1 
   config.vm.define :logs1 do |logs1|
     logs1.vm.hostname = "logs1.vag.ardemans.int"
-    logs1.vm.network :private_network, ip: "192.168.5.19"
-	logs1.vm.provision "shell", inline: "/vagrant/scripts/puppetize.sh"
-	logs1.vm.provision "puppet_server" do |puppet|
-	  puppet.puppet_server = "puppet1.vag.ardemans.int"
-	  puppet.options = "--verbose --debug --ssldir=/var/lib/puppet/ssl --waitforcert=5"
-	end
+    logs1.vm.network :private_network, ip: "192.168.5.46"
+	logs1.vm.provision "shell",  "/usr/bin/yum -y install puppet"
+	logs1.vm.provision :puppet do |puppet|
+	  puppet.manifests_path = "puppet/manifests"
+	  puppet.manifest_file = "site.pp"
+	  puppet.module_path = "puppet/modules"
+	  puppet.hiera_config_path = "hiera.yaml"
+	  puppet.options = "--verbose --debug"
+    end
   end
 
 end
