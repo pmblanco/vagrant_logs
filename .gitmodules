@@ -34,3 +34,6 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 [submodule "puppet/modules/redis"]
 	path = puppet/modules/redis
 	url = https://github.com/arioch/puppet-redis.git
+[submodule "puppet/modules/remi"]
+	path = puppet/modules/remi
+	url = ssh://git.prisadigital.int/repos/puppet-modules-remi.git
