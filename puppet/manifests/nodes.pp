@@ -1,6 +1,6 @@
 
   
-node 'es1.vag.ardemans.int' {
+node 'es1.vag.prisadigital.int' {
 
   class { 'roles::common':
     stage          => 'pre',
@@ -12,7 +12,7 @@ node 'es1.vag.ardemans.int' {
  
 }
 
-node 'es2.vag.ardemans.int' {
+node 'es2.vag.prisadigital.int' {
 
   class { 'roles::common':
     stage          => 'pre',
@@ -25,7 +25,7 @@ node 'es2.vag.ardemans.int' {
 }
 
 
-node 'logs1.vag.ardemans.int' {
+node 'logs1.vag.prisadigital.int' {
 
   class { 'roles::common':
     stage          => 'pre',
