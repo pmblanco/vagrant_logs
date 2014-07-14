@@ -37,3 +37,6 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 [submodule "puppet/modules/redis"]
 	path = puppet/modules/redis
 	url = https://github.com/fsalum/puppet-redis.git
+[submodule "puppet/modules/rabbitmq"]
+	path = puppet/modules/rabbitmq
+	url = https://github.com/puppetlabs/puppetlabs-rabbitmq.git
