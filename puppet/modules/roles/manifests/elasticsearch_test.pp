@@ -2,8 +2,13 @@ class roles::elasticsearch_test {
 
   class { 'elasticsearch':
     java_install            => true,
-    package_url             => "https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-0.90.9.noarch.rpm",
-    config                  => {
+    manage_repo             => true,
+    repo_version            => '1.1',
+    version                 => '1.1.1-1',
+  }
+
+  elasticsearch::instance { 'I1':
+    config                 => {
      'node'                 => {
        'name'               => $::hostname
      },
@@ -14,11 +19,26 @@ class roles::elasticsearch_test {
      'network'              => {
        'host'               => $::ipaddress_eth1
      },
-	 'cluster'              => {
-	   'name'               => 'ClusterPruebas',
-	 }
-	 
+         'cluster'              => {
+           'name'               => 'ClusterPruebas',
+         }
+
     }
+  }
+
+  elasticsearch::plugin{'karmi/elasticsearch-paramedic':
+    module_dir => 'paramedic',
+    instances   => 'I1',
+  }
+
+  elasticsearch::plugin{'lukas-vlcek/bigdesk/2.4.0':
+    module_dir => 'bigdesk',
+    instances  => 'I1',
+  }
+
+  elasticsearch::plugin{'royrusso/elasticsearch-HQ':
+    module_dir => 'HQ',
+    instances  => 'I1',
   }
 
 }
