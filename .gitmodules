@@ -40,3 +40,6 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 [submodule "puppet/modules/rabbitmq"]
 	path = puppet/modules/rabbitmq
 	url = https://github.com/puppetlabs/puppetlabs-rabbitmq.git
+[submodule "puppet/modules/erlang"]
+	path = puppet/modules/erlang
+	url = https://github.com/garethr/garethr-erlang.git
