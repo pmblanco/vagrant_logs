@@ -14,6 +14,9 @@ class roles::common {
 
   }
 
+  class { 'roles::common::hosts_defs':
+  }
+  
   class { 'puppet::repo':
   }
   
