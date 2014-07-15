@@ -39,3 +39,14 @@ node 'logs1.vag.prisadigital.int' {
   }
   
 }
+
+
+node /rabbit[12].vag.prisadigital.int/ {
+
+  class { 'roles::common':
+  }->
+  
+  class { 'roles::rabbitmq_test':
+  }
+
+}
