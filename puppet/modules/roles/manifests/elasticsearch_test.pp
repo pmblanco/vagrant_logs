@@ -19,10 +19,9 @@ class roles::elasticsearch_test {
      'network'              => {
        'host'               => $::ipaddress_eth1
      },
-         'cluster'              => {
-           'name'               => 'ClusterPruebas',
-         }
-
+     'cluster'              => {
+        'name'               => 'ClusterPruebas',
+      }
     }
   }
 
@@ -40,5 +39,14 @@ class roles::elasticsearch_test {
     module_dir => 'HQ',
     instances  => 'I1',
   }
+  
+  elasticsearch::plugin{'elasticsearch/elasticsearch-river-rabbitmq/2.0.0':
+    module_dir => 'river-rabbitmq',
+    instances  => 'I1',
+  }
 
+  elasticsearch::template { 'logstash':
+    file       => 'puppet:///modules/roles/elasticsearch_test/logstash_template.json',
+	host       => $::ipaddress_eth1,
+  }
 }
