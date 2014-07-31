@@ -36,5 +36,29 @@ class roles::rabbitmq_test {
   }
   
   
+  
+  rabbitmq_user { 'elastics':
+    admin     => true,
+	password  => 'elastics',
+  }
+   
+  rabbitmq_vhost { 'logs':
+    ensure    => present,
+  }
+
+  rabbitmq_user_permissions { 'elastics@logs':
+    configure_permission  => '.*',
+    read_permission       => '.*',
+    write_permission      => '.*',
+  }
+
+  rabbitmq_exchange { 'indexlog@logs':
+    ensure     => present,
+	user       => 'elastics',
+	password   => 'elastics',
+	type       => 'fanout',
+	require    => [ Rabbitmq_vhost['logs'],Rabbitmq_user['elastics'] ],
+  }
+  
 
 }
