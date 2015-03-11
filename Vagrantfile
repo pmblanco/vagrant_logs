@@ -158,33 +158,4 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  
-  # RabbitMQ 1
-  config.vm.define :rabbit1 do |rabbit1|
-    rabbit1.vm.hostname = "rabbit1.vag.prisadigital.int"
-    rabbit1.vm.network :private_network, ip: "192.168.5.51"
-	rabbit1.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
-	rabbit1.vm.provision :puppet do |puppet|
-	  puppet.manifests_path = "puppet/manifests"
-	  puppet.manifest_file = "site.pp"
-	  puppet.module_path = "puppet/modules"
-	  puppet.hiera_config_path = "hiera.yaml"
-	  puppet.options = "--verbose --debug"
-	end
-  end
-
-
-  # RabbitMQ 2
-  config.vm.define :rabbit2 do |rabbit2|
-    rabbit2.vm.hostname = "rabbit2.vag.prisadigital.int"
-    rabbit2.vm.network :private_network, ip: "192.168.5.52"
-	rabbit2.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
-	rabbit2.vm.provision :puppet do |puppet|
-	  puppet.manifests_path = "puppet/manifests"
-	  puppet.manifest_file = "site.pp"
-	  puppet.module_path = "puppet/modules"
-	  puppet.hiera_config_path = "hiera.yaml"
-	  puppet.options = "--verbose --debug"
-	end
-  end  
-end
+end 
