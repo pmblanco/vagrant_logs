@@ -33,7 +33,7 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 	url = https://github.com/electrical/puppet-lib-file_concat.git
 [submodule "puppet/modules/remi"]
 	path = puppet/modules/remi
-	url = ssh://git.prisadigital.int/repos/puppet-modules-remi.git
+	url = https://pmblanco@bitbucket.org/ardemans/puppet-modules-remi.git
 [submodule "puppet/modules/redis"]
 	path = puppet/modules/redis
 	url = https://github.com/fsalum/puppet-redis.git
@@ -46,3 +46,6 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 [submodule "puppet/modules/staging"]
 	path = puppet/modules/staging
 	url = https://github.com/nanliu/puppet-staging.git
+[submodule "puppet/modules/java"]
+	path = puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
