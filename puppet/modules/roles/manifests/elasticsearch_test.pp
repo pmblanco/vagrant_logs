@@ -3,8 +3,7 @@ class roles::elasticsearch_test {
   class { 'elasticsearch':
     java_install            => true,
     manage_repo             => true,
-    repo_version            => '1.1',
-    version                 => '1.1.1-1',
+    repo_version            => '1.4',
   }
 
   elasticsearch::instance { 'I1':
