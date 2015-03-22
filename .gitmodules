@@ -49,3 +49,6 @@ url=https://bitbucket.org/ardemans/puppet-modules-puppetboard.git
 [submodule "puppet/modules/java"]
 	path = puppet/modules/java
 	url = https://github.com/puppetlabs/puppetlabs-java.git
+[submodule "puppet/modules/kibana4"]
+	path = puppet/modules/kibana4
+	url = https://github.com/lesaux/puppet-kibana4.git
