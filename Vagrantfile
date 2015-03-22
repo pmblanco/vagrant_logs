@@ -118,7 +118,7 @@ Vagrant.configure("2") do |config|
   
   # Elasticsearch 1
   config.vm.define :es1 do |es1|
-    es1.vm.hostname = "es1.vag.prisadigital.int"
+    es1.vm.hostname = "es1.vag.ardemans.int"
     es1.vm.network :private_network, ip: "192.168.5.41"
 	es1.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
 	es1.vm.provision :puppet do |puppet|
@@ -132,7 +132,7 @@ Vagrant.configure("2") do |config|
 
   # Elasticsearch 2
   config.vm.define :es2 do |es2|
-    es2.vm.hostname = "es2.vag.prisadigital.int"
+    es2.vm.hostname = "es2.vag.ardemans.int"
     es2.vm.network :private_network, ip: "192.168.5.42"
 	es2.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
 	es2.vm.provision :puppet do |puppet|
@@ -146,7 +146,7 @@ Vagrant.configure("2") do |config|
 
   # Logs 1 
   config.vm.define :logs1 do |logs1|
-    logs1.vm.hostname = "logs1.vag.prisadigital.int"
+    logs1.vm.hostname = "logs1.vag.ardemans.int"
     logs1.vm.network :private_network, ip: "192.168.5.46"
 	logs1.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
 	logs1.vm.provision :puppet do |puppet|

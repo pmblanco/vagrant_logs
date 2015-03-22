@@ -7,35 +7,35 @@ class roles::common::hosts_defs {
     target       => '/etc/hosts',
   }
 
-  host { 'es1.vag.prisadigital.int':
+  host { 'es1.vag.ardemans.int':
     ensure       => 'present',
     host_aliases => ['es1.vag','es1'],
     ip           => '192.168.5.41',
     target       => '/etc/hosts',
   }
 
-  host { 'es2.vag.prisadigital.int':
+  host { 'es2.vag.ardemans.int':
     ensure       => 'present',
     host_aliases => ['es2.vag','es2'],
     ip           => '192.168.5.42',
     target       => '/etc/hosts',
   }
 
-  host { 'logs1.vag.prisadigital.int':
+  host { 'logs1.vag.ardemans.int':
     ensure       => 'present',
     host_aliases => ['logs1.vag','logs1'],
     ip           => '192.168.5.46',
     target       => '/etc/hosts',
   }
 
-  host { 'rabbit1.vag.prisadigital.int':
+  host { 'rabbit1.vag.ardemans.int':
     ensure       => 'present',
     host_aliases => ['rabbit1.vag','rabbit1'],
     ip           => '192.168.5.51',
     target       => '/etc/hosts',
   }
 
-  host { 'rabbit2.vag.prisadigital.int':
+  host { 'rabbit2.vag.ardemans.int':
     ensure       => 'present',
     host_aliases => ['rabbit2.vag','rabbit2'],
     ip           => '192.168.5.52',
