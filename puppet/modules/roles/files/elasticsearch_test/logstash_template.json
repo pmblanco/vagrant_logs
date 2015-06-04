@@ -10,29 +10,30 @@
                 {
                     "string_template" : { 
                         "match" : "*",
-                        "mapping": { "type": "string", "index": "not_analyzed" },
+                        "mapping": { "type": "string", "index": "not_analyzed", "store" : true },
                         "match_mapping_type" : "string"
                      } 
                  }
              ],
+             "_source" : { "enabled" : false },
              "properties" : {
                 "message" : { "type" : "string", "index" : "analyzed" },
-                "tags": { "type": "string", "index" : "not_analyzed" }, 
-                "type" : { "type" : "string", "index" : "not_analyzed" },
-                "agent" : { "type" : "string", "index" : "not_analyzed" },
-                "auth" : { "type" : "string", "index" : "not_analyzed" },
-                "bytes" : { "type" : "integer" },
-                "clientip" : { "type" : "ip", "index" : "not_analyzed" },
-                "host" : { "type" : "string", "index" : "not_analyzed" },
-                "httpversion" : { "type" : "string", "index" : "not_analyzed" },
-                "ident" : { "type" : "string", "index" : "not_analyzed" },
-                "type" : { "type" : "string", "index" : "not_analyzed" },
-                "referrer" : { "type" : "string", "index" : "not_analyzed" },
-                "request" : { "type" : "string", "index" : "not_analyzed" },
-                "response" : { "type" : "string", "index" : "not_analyzed" },
-                "type" : { "type" : "string", "index" : "not_analyzed" },
-                "timestamp" : { "type" : "string", "index" : "not_analyzed" },
-                "verb" : { "type" : "string", "index" : "not_analyzed" }
+                "tags": { "type": "string", "index" : "not_analyzed", "store" : true  }, 
+                "type" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "agent" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "auth" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "bytes" : { "type" : "integer", "store" : true },
+                "clientip" : { "type" : "ip", "index" : "not_analyzed", "store" : true },
+                "host" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "httpversion" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "ident" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "type" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "referrer" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "request" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "response" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "type" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "timestamp" : { "type" : "string", "index" : "not_analyzed", "store" : true },
+                "verb" : { "type" : "string", "index" : "not_analyzed", "store" : true }
             }
         }
     }
