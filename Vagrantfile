@@ -158,4 +158,22 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  # Graphs
+  config.vm.define :graphs1 do |graphs1|
+    graphs1.vm.hostname = "graphs1.vag.ardemans.int"
+    graphs1.vm.network :private_network, ip: "192.168.5.51"
+    graphs1.vm.provision "shell", inline: "/usr/bin/yum -y install puppet"
+    graphs1.vm.provision :puppet do |puppet|
+      puppet.manifests_path    = "puppet/manifests"
+      puppet.manifest_file     = "nodes.pp"
+      puppet.module_path       = "puppet/modules"
+      puppet.hiera_config_path = "hiera.yaml"
+      puppet.options           = "--verbose --debug"
+    end
+    graphs1.vm.provider "virtualbox" do |vbox|
+      vbox.memory = 1024
+      vbox.cpus   = 2
+    end
+  end
+
 end 
