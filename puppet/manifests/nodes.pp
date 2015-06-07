@@ -47,13 +47,12 @@ node 'logs1.vag.ardemans.int' {
 }
 
 
-node /rabbit[12].vag.ardemans.int/ {
+node 'graphs1.vag.ardemans.int' {
 
   class { 'roles::common':
-  }->
-  
-  class { 'roles::rabbitmq_test':
-  }
+  } ->
 
+  class { 'roles::graphs_server':
+  }
 
 }
