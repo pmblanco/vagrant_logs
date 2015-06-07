@@ -1,2 +1,2 @@
 ---
-prueba: "test"
+databases::mysql_server::root_password: 'sistemas'
